@@ -1,6 +1,7 @@
 /** Census the actual output path, including display-only figures with no saved ID.
  * No DB, network or writes outside the report directory. Numerical-only domains
  * are inventoried, not falsely described as exhaustively visually enumerated. */
+import "../init-arithmetic-packs";
 import { createHash } from "node:crypto";
 import {
   writeFileSync,

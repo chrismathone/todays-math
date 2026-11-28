@@ -26,6 +26,7 @@ vi.mock("@/lib/arithmetic-v2/registry", async () => {
   };
 });
 import { GET } from "@/app/api/arithmetic/v2/catalog/route";
+import { GET as GET_PACK } from "@/app/api/arithmetic/v2/packs/route";
 import { POST } from "@/app/api/arithmetic/v2/generate/route";
 import { buildArithmeticV2Sheet } from "@/lib/arithmetic-v2";
 import { fixtureRequest } from "../helpers/arithmeticV2Fixture";
@@ -42,6 +43,10 @@ const account = {
   menus: ["arithmetic"],
 };
 const catalog = () => new Request("http://localhost/api/arithmetic/v2/catalog");
+const pack = (family = "e5-rectangle-perimeter") =>
+  new Request(
+    `http://localhost/api/arithmetic/v2/packs?pack=dimensions&family=${encodeURIComponent(family)}`,
+  );
 const unsafeOriginHeaders: Record<string, string>[] = [
   {},
   { origin: "https://elsewhere.test" },
@@ -71,6 +76,32 @@ afterEach(async () => {
 });
 
 describe("v2 catalog and generation routes", () => {
+  it("returns only the requested family to a teacher or a super admin", async () => {
+    for (const user of [
+      account,
+      { ...account, menus: [], isSuperAdmin: true },
+    ]) {
+      mocks.auth.mockResolvedValue({ user });
+      const response = await GET_PACK(pack());
+      expect(response.status).toBe(200);
+      expect(response.headers.get("cache-control")).toContain("no-store");
+      expect(await response.json()).toEqual({
+        pack: "dimensions",
+        family: "e5-rectangle-perimeter",
+        data: expect.any(String),
+      });
+    }
+  });
+  it("rejects missing access and unknown families at the pack boundary", async () => {
+    mocks.auth.mockResolvedValue(null);
+    expect((await GET_PACK(pack())).status).toBe(401);
+    mocks.auth.mockResolvedValue({ user: { ...account, menus: [] } });
+    expect((await GET_PACK(pack())).status).toBe(403);
+    mocks.auth.mockResolvedValue({ user: account });
+    expect((await GET_PACK(pack("../engine-figures-v1.json"))).status).toBe(
+      404,
+    );
+  });
   it("accepts 2000 fragmented allocations beyond the former request byte cap", async () => {
     const request = fixtureRequest(1, "test-large");
     request.rounds = Array.from({ length: 10 }, () => ({

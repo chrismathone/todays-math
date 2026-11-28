@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- immutable, local SVG data URI */
+import { useMemo } from "react";
 import type { ArithmeticV2Prompt } from "@/lib/arithmetic-v2/types";
 import {
   arithmeticGeometryAnswerUnit,
@@ -17,6 +18,8 @@ import {
 } from "@/lib/arithmetic-v2/presentation/text";
 import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
+import { arithmeticPromptPacks } from "@/lib/arithmetic-v2/presentation/packAssets";
+import { useArithmeticPackPreparation } from "./useArithmeticPackPreparation";
 import {
   figureFirstGroupInstruction,
   figureFirstSvg,
@@ -30,10 +33,25 @@ import s from "./GradeArithmeticPrompt.module.css";
 export function GradeArithmeticExpression({
   prompt,
   typeId,
+  preview,
 }: {
   prompt: ArithmeticV2Prompt;
   typeId?: string;
+  preview?: boolean;
 }) {
+  const requests = useMemo(
+    () => arithmeticPromptPacks(prompt, typeId),
+    [prompt, typeId],
+  );
+  const { ready, failed } = useArithmeticPackPreparation(requests, preview);
+  if (!ready)
+    return failed ? (
+      <span role="alert">
+        예시 그림을 불러오지 못했습니다. 예시를 다시 열어 주세요.
+      </span>
+    ) : (
+      <span role="status">예시 그림을 불러오는 중입니다.</span>
+    );
   if (
     prompt.layout !== "math" ||
     (!prompt.figureId && prompt.answerUnit === undefined)

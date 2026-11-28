@@ -5,6 +5,9 @@ import { afterAll, afterEach, beforeAll, beforeEach, vi } from "vitest";
 import { cleanup, configure } from "@testing-library/react";
 
 import { server } from "@/mocks/server";
+import { installArithmeticPackReader } from "@/lib/arithmetic-v2/presentation/packAssets";
+import { readNodeArithmeticPack } from "@/lib/arithmetic-v2/presentation/packAssets.node";
+installArithmeticPackReader(readNodeArithmeticPack);
 // Route tests execute server modules directly; Next's build-time server boundary is not a Node runtime module.
 vi.mock("server-only", () => ({}));
 

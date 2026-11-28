@@ -1,8 +1,12 @@
 import { inflateSync, strFromU8 } from "fflate";
-import asset from "./dimensions-assets-v1.json";
+import {
+  decodeArithmeticPack,
+  dimensionPackMatch,
+  hasPackFamily,
+  readArithmeticPack,
+} from "./packAssets";
 
 type Family = Record<string, readonly [canonical: string, display: string]>;
-const packs: Readonly<Record<string, string>> = asset.families;
 const cache = new Map<string, Family>();
 const MAX_FAMILIES = 4;
 
@@ -15,13 +19,18 @@ export function presentArithmeticDimensionSvg(
   id: string,
   originalSvg: string,
 ): string | undefined {
-  const match = /^age-(e[356]-[a-z-]+)-v1-(\d+(?:-\d+)*)$/.exec(id);
-  if (!match || !Object.hasOwn(packs, match[1])) return undefined;
+  const match = dimensionPackMatch(id);
+  if (!match || !hasPackFamily("dimensions", match[1])) return undefined;
   const family = match[1];
   let rows = cache.get(family);
   if (!rows) {
-    const bytes = Uint8Array.from(atob(packs[family]), (c) => c.charCodeAt(0));
-    rows = JSON.parse(strFromU8(inflateSync(bytes))) as Family;
+    rows = decodeArithmeticPack("dimensions", family, () => {
+      const bytes = Uint8Array.from(
+        atob(readArithmeticPack("dimensions", family)),
+        (c) => c.charCodeAt(0),
+      );
+      return JSON.parse(strFromU8(inflateSync(bytes))) as Family;
+    });
   }
   cache.delete(family);
   cache.set(family, rows);

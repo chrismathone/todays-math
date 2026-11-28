@@ -188,6 +188,11 @@ export function accountRouteAllowed(
   )
     return any("textbook");
   // «연산대장»은 2026-10-16 부터 제 메뉴다 — «시험지 만들기»(bank)에 딸리지 않는다.
+  if (path === "/api/arithmetic/v2/packs")
+    return (
+      (account.isSuperAdmin || any("arithmetic")) &&
+      (method === "GET" || method === "HEAD")
+    );
   if (
     path === "/api/arithmetic/catalog" ||
     path === "/api/arithmetic/v2/catalog"

@@ -1,4 +1,5 @@
 /** Byte-exact codec replay and independent rendered-point transform checks. */
+import "../init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";

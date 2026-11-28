@@ -1,3 +1,4 @@
+import "./init-arithmetic-packs";
 import { readEvidenceText } from "./arithmetic-full-figure-audit";
 /** Independent inventory, immutable-source, geometry and editor replay checks. */
 import assert from "node:assert/strict";

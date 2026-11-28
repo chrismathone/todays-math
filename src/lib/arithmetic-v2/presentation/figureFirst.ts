@@ -1,4 +1,5 @@
 import type { ArithmeticV2Prompt } from "../types";
+import { ArithmeticPackUnavailable } from "./packAssets";
 import { CENTER_SPECS } from "../families/geometryTriangles/centers";
 import {
   centerAngleFigureSvg,
@@ -158,7 +159,8 @@ export function figureFirstSvg(
             ),
       { skipLayout: arithmeticEngineOwnsType(typeId) },
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof ArithmeticPackUnavailable) throw error;
     // A placement failure must degrade to the prose presentation, never 500.
     return undefined;
   }

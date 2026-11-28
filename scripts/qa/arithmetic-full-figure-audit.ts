@@ -1,6 +1,7 @@
 /** Complete registry/accepted-facade census. Reuses the named root toolchain.
  * node --import C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-full-figure-audit.ts
  */
+import "./init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";

@@ -1,6 +1,7 @@
 /** Independent public a/b/c target check against actual final SVG point owners.
  * GeometryMeasure exact answers use its documented [n,r,d] surd normal form.
  * All 64 coordinate-rounding corners are considered, not relaxed tolerances. */
+import "../init-arithmetic-packs";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
