@@ -41,16 +41,23 @@ export function scanPaperCss() {
     ["src/components/concept-blank/issuedPaper.module.css", issued],
   ];
   cached = [
+    // 읽는 파일은 next.config `outputFileTracingIncludes` 가 싣는다 — 동적 경로를 추적하면 프로젝트 전체(9만 파일)를 훑어 Vercel 빌드가 메모리 초과로 죽었다(2026-11-27).
     // `createRequire(import.meta.url).resolve` 는 Turbopack 운영 빌드에서 undefined 가 됐다(2026-11-25 운영 장애).
     // 이 파일은 `next.config.ts` 의 outputFileTracingIncludes 로 함수에 실린다 — cwd 기준으로 읽는다.
     readFileSync(
-      path.join(root, "node_modules/tailwindcss/preflight.css"),
+      path.join(
+        /* turbopackIgnore: true */ root,
+        "node_modules/tailwindcss/preflight.css",
+      ),
       "utf8",
     ),
     scanMathLayoutCss(),
     `:root{--font-noto-serif-kr:"Noto Serif KR";--font-pretendard:"Pretendard"}html,body{margin:0;padding:0}`,
     ...modules.map(([file, classes]) =>
-      materializeScanCss(readFileSync(path.join(root, file), "utf8"), classes),
+      materializeScanCss(
+        readFileSync(path.join(/* turbopackIgnore: true */ root, file), "utf8"),
+        classes,
+      ),
     ),
     `[data-print-page]{--cb-paper-scale:1!important;margin:0!important;box-shadow:none!important}`,
   ].join("\n");

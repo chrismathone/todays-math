@@ -19,7 +19,9 @@ function fonts() {
   const root = process.cwd();
   const urls = new Map<string, string>();
   const source = (file: string, url: string) => {
-    const bytes = readFileSync(path.join(root, file));
+    const bytes = readFileSync(
+      path.join(/* turbopackIgnore: true */ root, file),
+    );
     const base64 = `data:font/woff2;base64,${bytes.toString("base64")}`;
     const hash = createHash("sha256").update(bytes).digest("hex");
     urls.set(base64, `${url}?v=${hash}`);
@@ -32,7 +34,10 @@ function fonts() {
     korean("Pretendard", "PretendardVariable.woff2"),
   ];
   const math = readFileSync(
-    path.join(root, "node_modules/katex/dist/katex.min.css"),
+    path.join(
+      /* turbopackIgnore: true */ root,
+      "node_modules/katex/dist/katex.min.css",
+    ),
     "utf8",
   );
   const katex = (math.match(faces) ?? []).map((face) =>
