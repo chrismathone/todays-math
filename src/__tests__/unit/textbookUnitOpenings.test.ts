@@ -12,7 +12,7 @@ import {
   conceptScriptSemesterCoverage,
 } from "@/lib/textbook/conceptScripts";
 import {
-  TEXTBOOK_CORE_BANK,
+  getTextbookCoreGradeBank,
   coreConceptsForSection,
 } from "@/lib/textbook/coreConceptBank";
 import referenceV15 from "@/lib/textbook/scripts/reference-v15.json";
@@ -98,6 +98,10 @@ const catalogue = BLANK_SECTIONS.filter((section) =>
   (CONCEPT_BLANK_GRADES as readonly string[]).includes(section.grade),
 );
 
+const coreConcepts = ["초3", "초4", "초5", "초6", "중1", "중2", "중3"].flatMap(
+  (grade) => getTextbookCoreGradeBank(grade).concepts,
+);
+
 describe("단원 도입 원고 — 72개 대단원", () => {
   it("대단원 ID가 초3부터 중3까지 교육과정 순서 그대로 72개다", () => {
     expect(unitOpenings().map((opening) => opening.id)).toEqual(CHAPTER_IDS);
@@ -148,9 +152,7 @@ describe("단원 도입 원고 — 72개 대단원", () => {
     const conceptIds = sections.flatMap(({ section }) => section.conceptIds);
     expect(sections).toHaveLength(360);
     expect(conceptIds).toHaveLength(1657);
-    expect(conceptIds).toEqual(
-      TEXTBOOK_CORE_BANK.concepts.map((card) => card.id),
-    );
+    expect(conceptIds).toEqual(coreConcepts.map((card) => card.id));
     expect(source.source).toMatchObject({
       chapters: 72,
       sections: 360,

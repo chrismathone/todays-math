@@ -35,17 +35,16 @@ async function handlePost(request: Request) {
     ).origin;
     const { renderScanPaper, bank, edition } = await Promise.all([
       import("@/lib/concept-blank/scan/paper.server"),
-      import("@/lib/concept-blank/bank"),
+      import("@/lib/concept-blank/bank/runtime"),
     ])
-      .then(([paper, { CONCEPT_BLANK_BANK }]) => ({
-        renderScanPaper: paper.renderScanPaper,
-        bank: CONCEPT_BLANK_BANK,
-        edition: paper.scanPublicationEdition(
-          input.selection,
-          CONCEPT_BLANK_BANK,
-          origin,
-        ),
-      }))
+      .then(([paper, { getConceptBlankBankForSections }]) => {
+        const bank = getConceptBlankBankForSections(input.selection.sections);
+        return {
+          renderScanPaper: paper.renderScanPaper,
+          bank,
+          edition: paper.scanPublicationEdition(input.selection, bank, origin),
+        };
+      })
       .catch(paperFailure);
     const data = await issueScanPaper(actor, input, {
       db: scanDatabase,

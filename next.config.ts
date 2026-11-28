@@ -151,6 +151,48 @@ const nextConfig: NextConfig = {
     "/dev/arithmetic/grade-print": [
       "./src/lib/arithmetic-v2/presentation/*.json",
     ],
+    // Use App Router leaf names where a URL prefix would match unrelated routes.
+    "/concept-blank/print": ["./data/concept-blank/*.json"],
+    "/api/concept-blank/bank": ["./data/concept-blank/*.json"],
+    "/api/concept-blank/scan/issued/route": ["./data/concept-blank/*.json"],
+    "/api/library/documents/\\[documentId\\]/route": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/admin/users/\\[id\\]/documents/\\[documentId\\]/route": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/learn/fading": ["./data/concept-blank/*.json"],
+    "/api/learn/fading/**": ["./data/concept-blank/*.json"],
+    "/api/math-srs/fading": ["./data/concept-blank/*.json"],
+    "/api/math-srs/fading/preview": ["./data/concept-blank/*.json"],
+    "/api/students/*/math-srs/fading": ["./data/concept-blank/*.json"],
+    "/api/math-ontology/assist": ["./data/concept-blank/*.json"],
+    "/api/textbook/concepts/catalog": ["./data/concept-blank/*.json"],
+    "/api/textbook/quick-create": ["./data/concept-blank/*.json"],
+    "/api/textbook/editions/*/concepts/route": ["./data/concept-blank/*.json"],
+    "/api/textbook/editions/*/concepts/\\[conceptKey\\]/route": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/textbook/editions/*/concepts/*/blank": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/textbook/editions/*/sections/*/preview": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/textbook/editions/*/publish/preflight": [
+      "./data/concept-blank/*.json",
+    ],
+    "/api/textbook/editions/*/publish/reserve": ["./data/concept-blank/*.json"],
+    "/dev/fading/page": ["./data/concept-blank/*.json"],
+    "/dev/fading-teacher-hifi": ["./data/concept-blank/*.json"],
+    "/dev/fading-teacher-wire": ["./data/concept-blank/*.json"],
+    "/dev/explorer-srs": ["./data/concept-blank/*.json"],
+    "/dev/concept-blank-scan-hifi": [
+      "./data/concept-blank/{manifest,e5,e5plus}.json",
+    ],
+    "/dev/concept-blank-scan-wire": [
+      "./data/concept-blank/{manifest,e5,e5plus}.json",
+    ],
     "/api/concept-blank/scan/**": [
       "./src/components/concept-blank/paper/paper.module.css",
       "./src/components/concept-blank/issuedPaper.module.css",

@@ -21,7 +21,7 @@ import type { TextbookDb, TextbookSql } from "@/lib/textbook/server/sql";
 import { getEditionDetail } from "@/lib/textbook/server/editions";
 import { putAsset, linkEditionAssets } from "@/lib/textbook/server/blobs";
 import { getSection } from "@/lib/textbook/server/sections";
-import { conceptIndex } from "@/lib/textbook/server/quickCreate/context";
+import { getConceptIndex } from "@/lib/textbook/server/quickCreate/context";
 import { QUESTION_REVISION } from "@/lib/concept-blank/questions";
 import { validateTextbookReferences } from "@/lib/textbook/references";
 import { assembleExchange } from "@/lib/textbook/server/exchange";
@@ -1115,7 +1115,7 @@ describe("quick create component composition", () => {
 });
 describe("quick create failure and idempotency", () => {
   it("freezes current question payloads and preserves all explanations when a form excludes a core entry", async () => {
-    const entries = conceptIndex.get(seedKey(e3[0]))!;
+    const entries = getConceptIndex("초3").get(seedKey(e3[0]))!;
     const before = entries.map((entry) => ({
       entry,
       value: structuredClone(entry),
@@ -1206,11 +1206,11 @@ describe("quick create failure and idempotency", () => {
         validateTextbookReferences(changed).map((issue) => issue.code),
       ).toContain("QUESTION_FROZEN");
       const missingKey = seedKey(e3[1]);
-      const missingEntries = conceptIndex.get(missingKey)!;
-      conceptIndex.delete(missingKey);
+      const missingEntries = getConceptIndex("초3").get(missingKey)!;
+      getConceptIndex("초3").delete(missingKey);
       // Every bank section is reviewed now (c53681418): turn the last one back into an
       // unreviewed section so the range mixes two question revisions.
-      const legacyEntries = conceptIndex.get(seedKey(e3[2]))!;
+      const legacyEntries = getConceptIndex("초3").get(seedKey(e3[2]))!;
       const legacyBefore = legacyEntries.map((entry) => structuredClone(entry));
       for (const entry of legacyEntries)
         for (const field of [
@@ -1242,7 +1242,7 @@ describe("quick create failure and idempotency", () => {
           ),
         ).rejects.toThrow("서로 다른 질문 판");
       } finally {
-        conceptIndex.set(missingKey, missingEntries);
+        getConceptIndex("초3").set(missingKey, missingEntries);
         legacyEntries.forEach((entry, index) =>
           Object.assign(entry, legacyBefore[index]),
         );

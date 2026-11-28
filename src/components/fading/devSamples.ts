@@ -1,7 +1,7 @@
 import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import { fadingTrapMap } from "@/lib/fading/traps";
 import { fadingFigureMap } from "@/lib/fading/figures";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { getConceptBlankBank } from "@/lib/concept-blank/bank/runtime";
 
 export type FadingSample = {
   id: string;
@@ -38,7 +38,7 @@ export function selectFadingSamples(all: readonly FadingConcept[]) {
     key: "targets" | "longestSentence" | "longestChip" | "mathTargets",
   ) => rows.reduce((best, row) => (row[key] > best[key] ? row : best));
   const selected: FadingSample[] = [];
-  const figures = fadingFigureMap(all, CONCEPT_BLANK_BANK.figures);
+  const figures = fadingFigureMap(all, getConceptBlankBank().figures);
   const add = (row: (typeof rows)[number], reason: string) => {
     const previous = selected.find((sample) => sample.id === row.concept.id);
     if (previous) previous.reason += ` · ${reason}`;
@@ -110,6 +110,6 @@ export function selectFadingSamples(all: readonly FadingConcept[]) {
     concepts,
     bankSize: all.length,
     traps: fadingTrapMap(concepts),
-    figures: fadingFigureMap(concepts, CONCEPT_BLANK_BANK.figures),
+    figures: fadingFigureMap(concepts, getConceptBlankBank().figures),
   };
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { blankKeywords } from "@/contracts/conceptBlank.contract";
 vi.mock("server-only", () => ({}));
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { getConceptBlankBank } from "@/lib/concept-blank/bank/runtime";
 import { composeFrozenTextbookBlank } from "@/lib/concept-blank/textbookPrint";
 import {
   conceptCandidatesForSection,
@@ -14,7 +14,7 @@ import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 
 const reviewerId = "11111111-1111-4111-8111-111111111111";
 const now = "2026-10-03T00:00:00.000Z";
-const entry = CONCEPT_BLANK_BANK.concepts.find(
+const entry = getConceptBlankBank().concepts.find(
   (row) => row.id === "e5-1-4-3-c1",
 )!;
 const candidate = {
@@ -74,22 +74,31 @@ function reviewed() {
 
 describe("reviewed textbook concepts use exact canonical sources", () => {
   it("uses eligible forms per linked concept without inventing an excluded question, and rejects an exact unavailable form", () => {
-    const prior=structuredClone(entry);
+    const prior = structuredClone(entry);
     try {
-      entry.questionRevision="student-clear-test-v1";
-      entry.bQuestion=null;
-      entry.clozeQuestion={sentence:entry.definition,acceptedAnswers:blankKeywords(entry.definition).map(key=>[key])};
-      entry.questionExclusions={term:"이 형식에서는 다른 질문과 목표가 겹쳐 제외한다."};
-      const frozen=freezeTextbookConcept(reviewed(),["term","cloze"]);
-      expect(frozen.frozen!.selection.map(pick=>pick.form)).toEqual(["cloze"]);
+      entry.questionRevision = "student-clear-test-v1";
+      entry.bQuestion = null;
+      entry.clozeQuestion = {
+        sentence: entry.definition,
+        acceptedAnswers: blankKeywords(entry.definition).map((key) => [key]),
+      };
+      entry.questionExclusions = {
+        term: "이 형식에서는 다른 질문과 목표가 겹쳐 제외한다.",
+      };
+      const frozen = freezeTextbookConcept(reviewed(), ["term", "cloze"]);
+      expect(frozen.frozen!.selection.map((pick) => pick.form)).toEqual([
+        "cloze",
+      ]);
       expect(frozen.frozen!.entries[0].payload.id).toBe(entry.id);
-      expect(()=>freezeTextbookConcept(reviewed(),["term"])).toThrow("선택한 형식");
+      expect(() => freezeTextbookConcept(reviewed(), ["term"])).toThrow(
+        "선택한 형식",
+      );
     } finally {
       delete entry.questionRevision;
       delete entry.bQuestion;
       delete entry.clozeQuestion;
       delete entry.questionExclusions;
-      Object.assign(entry,prior);
+      Object.assign(entry, prior);
     }
   });
   it("uses an authored bridge only as a candidate and returns actual bank IDs", () => {

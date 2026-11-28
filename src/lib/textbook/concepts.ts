@@ -9,7 +9,10 @@ import {
   type TextbookConceptTarget,
   type TextbookFrozenEntry,
 } from "@/contracts/textbookConcept.contract";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import {
+  getConceptBlankBank,
+  getConceptBlankGradeBank,
+} from "@/lib/concept-blank/bank/runtime";
 import { conceptSupportsForm } from "@/lib/concept-blank/questions";
 import { getBlankSection } from "@/lib/concept-blank/sections";
 import {
@@ -25,29 +28,49 @@ import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 import { curriculumGraph } from "@/lib/math-prerequisite/graph";
 import { canonicalHash, conceptContentHash } from "./hash.server";
 
-const allEntries: TextbookFrozenEntry[] = [
-  ...CONCEPT_BLANK_BANK.concepts.map((payload): TextbookFrozenEntry => ({
-    entryKind: "concept",
-    payload,
-  })),
-  ...CONCEPT_BLANK_BANK.ox.map((payload): TextbookFrozenEntry => ({
-    entryKind: "ox",
-    payload,
-  })),
-  ...CONCEPT_BLANK_BANK.apply.map((payload): TextbookFrozenEntry => ({
-    entryKind: "apply",
-    payload,
-  })),
-  ...CONCEPT_BLANK_BANK.figures.map((payload): TextbookFrozenEntry => ({
-    entryKind: "figure",
-    payload,
-  })),
-];
-const entryById = new Map(
-  allEntries.map((entry) => [`${entry.entryKind}:${entry.payload.id}`, entry]),
-);
-if (entryById.size !== allEntries.length)
-  throw new Error("개념백지 항목 ID가 중복되었습니다.");
+const catalogIndexes = new Map<
+  string | undefined,
+  ReturnType<typeof buildCatalog>
+>();
+function buildCatalog(grade: string | undefined) {
+  const bank = grade ? getConceptBlankGradeBank(grade) : getConceptBlankBank();
+  const allEntries: TextbookFrozenEntry[] = [
+    ...bank.concepts.map((payload): TextbookFrozenEntry => ({
+      entryKind: "concept",
+      payload,
+    })),
+    ...bank.ox.map((payload): TextbookFrozenEntry => ({
+      entryKind: "ox",
+      payload,
+    })),
+    ...bank.apply.map((payload): TextbookFrozenEntry => ({
+      entryKind: "apply",
+      payload,
+    })),
+    ...bank.figures.map((payload): TextbookFrozenEntry => ({
+      entryKind: "figure",
+      payload,
+    })),
+  ];
+  const entryById = new Map(
+    allEntries.map((entry) => [
+      `${entry.entryKind}:${entry.payload.id}`,
+      entry,
+    ]),
+  );
+  if (entryById.size !== allEntries.length)
+    throw new Error("개념백지 항목 ID가 중복되었습니다.");
+  return { allEntries, entryById };
+}
+function getCatalog(grade?: string) {
+  const cached = catalogIndexes.get(grade);
+  if (cached) return cached;
+  const catalog = buildCatalog(grade);
+  // Invalid or arbitrary grade strings must not extend the cache.
+  if (grade === undefined || catalog.allEntries.length > 0)
+    catalogIndexes.set(grade, catalog);
+  return catalog;
+}
 
 export function listConceptCatalog(
   options: {
@@ -63,6 +86,9 @@ export function listConceptCatalog(
     throw new RangeError("잘못된 개념 목록 위치입니다.");
   const limit = Math.min(200, Math.max(1, options.limit ?? 100));
   const query = (options.query ?? "").trim().toLocaleLowerCase();
+  const { allEntries } = getCatalog(
+    options.grade || options.blankSectionKey?.split("::", 1)[0] || undefined,
+  );
   const matching = allEntries.filter((entry) => {
     if (
       options.grade &&
@@ -97,6 +123,7 @@ export function listConceptCatalog(
 function blankTarget(
   ref: TextbookConcept["blankItems"][number],
 ): TextbookFrozenEntry {
+  const { entryById } = getCatalog(ref.blankSectionKey.split("::", 1)[0]);
   const entry = entryById.get(`${ref.entryKind}:${ref.entryId}`);
   if (!entry || entry.payload.section !== ref.blankSectionKey)
     throw new Error(`개념백지 항목을 찾을 수 없습니다: ${ref.entryId}`);

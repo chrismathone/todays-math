@@ -232,7 +232,7 @@ try {
     `${root}/src/app/dev/concept-blank-scan-wire/samples.ts`,
   );
   const { loadGradeBank } = await server.ssrLoadModule(
-    `${root}/src/lib/concept-blank/bank/load.ts`,
+    `${root}/src/lib/concept-blank/bank/loadAuthored.ts`,
   );
   selection = (await loadWireSamples()).find((s) => s.id === "multi").selection;
   bank = await loadGradeBank("초5");

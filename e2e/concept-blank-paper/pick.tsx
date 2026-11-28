@@ -6,7 +6,7 @@ import ConceptBlankView from "../../src/components/concept-blank/ConceptBlankVie
 import ConceptBlankPaper from "../../src/components/concept-blank/ConceptBlankPaper";
 import { parseConceptBlankView } from "../../src/components/concept-blank/paper/view";
 import { composeSheets } from "../../src/lib/concept-blank/compose";
-import { loadGradeBank } from "../../src/lib/concept-blank/bank/load";
+import { loadGradeBank } from "../../src/lib/concept-blank/bank/loadAuthored";
 import {
   decodeSelection,
   encodeSelection,

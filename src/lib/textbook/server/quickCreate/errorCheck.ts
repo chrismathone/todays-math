@@ -1,6 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { TEXTBOOK_CORE_BANK } from "../../coreConceptBank";
+import { getTextbookCoreGradeBank } from "../../coreConceptBank";
 import { invalid } from "../errors";
 import {
   keyOf,
@@ -15,26 +15,24 @@ export function appendErrorCheck(
   const { components } = ctx;
   const { unit, section } = lesson;
   if (components.errorCheck) {
-    const checks = TEXTBOOK_CORE_BANK.ox.filter(
+    const checks = getTextbookCoreGradeBank(unit.grade).ox.filter(
       (entry) => entry.section === keyOf(unit),
     );
     if (!checks.length)
       throw invalid(`${unit.section}: 준비된 오류 점검 문장이 없습니다.`);
-    section.blocks.push(
-      {
-        blockId: randomUUID(),
-        kind: "concept-recall",
-        phase: "sentences",
-        conceptKey: `concept-${unit.id}`,
-        showRepetitionChecks: false,
-        semantic: { activity: "errorCheck", title: "오류 점검" },
-        markdown: checks
-          .map(
-            (entry, index) =>
-              `${index + 1}. ${entry.statement}\n\n{{${entry.answer ? "옳음" : "틀림"}: ${entry.why}}}`,
-          )
-          .join("\n\n"),
-      },
-    );
+    section.blocks.push({
+      blockId: randomUUID(),
+      kind: "concept-recall",
+      phase: "sentences",
+      conceptKey: `concept-${unit.id}`,
+      showRepetitionChecks: false,
+      semantic: { activity: "errorCheck", title: "오류 점검" },
+      markdown: checks
+        .map(
+          (entry, index) =>
+            `${index + 1}. ${entry.statement}\n\n{{${entry.answer ? "옳음" : "틀림"}: ${entry.why}}}`,
+        )
+        .join("\n\n"),
+    });
   }
 }

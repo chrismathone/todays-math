@@ -28,12 +28,9 @@ vi.mock("next/navigation", () => ({
     throw new Error(`REDIRECT ${to}`);
   },
 }));
-vi.mock("@/lib/concept-blank/bank", async () => {
+vi.mock("@/lib/concept-blank/bank/runtime", async () => {
   const { FIXTURE_BANK } = await import("@/lib/concept-blank/fixture");
-  const actual = await vi.importActual<
-    typeof import("@/lib/concept-blank/bank")
-  >("@/lib/concept-blank/bank");
-  return { ...actual, CONCEPT_BLANK_BANK: FIXTURE_BANK };
+  return { getConceptBlankBankForSections: () => FIXTURE_BANK };
 });
 
 import ConceptBlankPrintPage from "@/app/(main)/concept-blank/print/page";

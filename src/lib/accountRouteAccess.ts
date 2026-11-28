@@ -318,6 +318,10 @@ export function accountRouteAllowed(
   // `/api` 밖 경로는 아래에서 기본 통과라, 인쇄 페이지를 여기 적지 않으면 메뉴를 끈 계정도 연다.
   if (under(path, "/api/english") || under(path, "/english"))
     return englishRouteAllowed(account.menus, method, path);
+  if (path === "/api/concept-blank/bank")
+    return (method === "GET" || method === "HEAD") && any("conceptBlank");
+  if (path === "/api/math-srs/fading/preview")
+    return (method === "GET" || method === "HEAD") && any("srs");
   // 개념 백지 — 발행·사진 채점도 기존 메뉴를 따른다. 각 라우트가 소유/학생 범위를 다시 확인한다.
   if (under(path, "/concept-blank") || under(path, "/api/concept-blank/scan"))
     return any("conceptBlank");

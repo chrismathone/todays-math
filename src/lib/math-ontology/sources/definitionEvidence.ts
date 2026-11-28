@@ -1,5 +1,6 @@
 import "server-only";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
+import { getConceptBlankBank } from "@/lib/concept-blank/bank/runtime";
 import { sourceEntityIri } from "../ids";
 import {
   sourceByteDigest,
@@ -16,7 +17,7 @@ import {
   readSourcePartitionArtifact,
   type MathOntologySourcePartitionManifest,
 } from "./partitions";
-const definitions = new Map(CONCEPT_BLANK_BANK.concepts.map((c) => [c.id, c]));
+let definitions: ReadonlyMap<string, ConceptEntry> | undefined;
 const MAX_ITEMS = 6,
   MAX_BYTES = 24 * 1024;
 /** Native general definitions only. Assessment questions, examples/answers, imported originals and student text are excluded by construction. */
@@ -41,10 +42,14 @@ export async function readNativeDefinitionEvidenceInTransaction(
       "Definition evidence request exceeds bounded source policy",
     );
   await authorizeMathOntologyNativeSourceRead(tx, input);
+  if (nativeIds.length > 0)
+    definitions ??= new Map(
+      getConceptBlankBank().concepts.map((c) => [c.id, c]),
+    );
   const packets = [],
     unknownIds = [];
   for (const nativeId of nativeIds) {
-    const current = definitions.get(nativeId);
+    const current = definitions?.get(nativeId);
     if (!current) {
       unknownIds.push(nativeId);
       continue;

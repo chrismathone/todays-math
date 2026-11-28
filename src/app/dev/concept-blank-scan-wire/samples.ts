@@ -6,7 +6,7 @@ import {
   type ConceptBlankSelection,
   type ConceptBlankSheet,
 } from "@/contracts/conceptBlank.contract";
-import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+import { getConceptBlankGradeBank } from "@/lib/concept-blank/bank/runtime";
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 import {
@@ -46,7 +46,7 @@ const LONG_TITLE =
   "선대칭도형과 점대칭도형의 성질 비교와 대응하는 점과 변과 각 설명해 보기";
 
 export async function loadWireSamples(): Promise<WireSample[]> {
-  const bank = await loadGradeBank("초5");
+  const bank = getConceptBlankGradeBank("초5");
   const specs = [
     {
       id: "single",

@@ -22,7 +22,7 @@ import {
 import { bank as e3Bank } from "@/lib/concept-blank/bank/e3";
 import {
   coreConceptsForSection,
-  TEXTBOOK_CORE_BANK,
+  getTextbookCoreGradeBank,
 } from "@/lib/textbook/coreConceptBank";
 
 const id = "00000000-0000-4000-8000-000000000001";
@@ -97,18 +97,18 @@ function blocks(): ManuscriptBlock[] {
     },
   ];
 }
+const coreConcepts = ["초3", "초4", "초5", "초6", "중1", "중2", "중3"].flatMap(
+  (grade) => getTextbookCoreGradeBank(grade).concepts,
+);
+
 describe("textbook semantic compatibility", () => {
   it("matches every supported section to its prepared script and excludes supplemental cards", () => {
-    expect(TEXTBOOK_CORE_BANK.concepts).toHaveLength(1657);
-    const sections = new Set(
-      TEXTBOOK_CORE_BANK.concepts.map((entry) => entry.section),
-    );
+    expect(coreConcepts).toHaveLength(1657);
+    const sections = new Set(coreConcepts.map((entry) => entry.section));
     expect(sections.size).toBe(360);
     for (const sectionKey of sections)
       expect(coreConceptsForSection(sectionKey).length).toBeGreaterThan(0);
-    expect(
-      TEXTBOOK_CORE_BANK.concepts.some((entry) => entry.id.includes("plus")),
-    ).toBe(false);
+    expect(coreConcepts.some((entry) => entry.id.includes("plus"))).toBe(false);
   });
   it("uses the same source rows in three phases and preserves TeX braces inside keyword blanks", () => {
     const rows = conceptMemoryRows(e3Bank.concepts.slice(0, 3));

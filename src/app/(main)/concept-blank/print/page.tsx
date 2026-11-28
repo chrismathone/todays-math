@@ -95,9 +95,11 @@ export default async function ConceptBlankPrintPage({
     );
 
   let sheets: ConceptBlankSheet[];
-  const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+  const { getConceptBlankBankForSections } =
+    await import("@/lib/concept-blank/bank/runtime");
+  const bank = getConceptBlankBankForSections(selection.sections);
   try {
-    sheets = composeSheets(selection, CONCEPT_BLANK_BANK);
+    sheets = composeSheets(selection, bank);
   } catch (error) {
     if (selection.pick === undefined || !(error instanceof RangeError))
       throw error;
@@ -116,7 +118,7 @@ export default async function ConceptBlankPrintPage({
         <ConceptBlankPaper
           code={
             sheets.length && selection.pick === undefined
-              ? encodeSheetCode(selection, CONCEPT_BLANK_BANK)
+              ? encodeSheetCode(selection, bank)
               : undefined
           }
           sheets={sheets}

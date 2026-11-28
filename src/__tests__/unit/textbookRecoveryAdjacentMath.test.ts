@@ -9,7 +9,7 @@ vi.mock("server-only", () => ({}));
 import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import type { TextbookSemanticRow } from "@/contracts/textbookSemantic.contract";
 import { conceptMemoryRows } from "@/lib/textbook/conceptRows";
-import { TEXTBOOK_CORE_BANK } from "@/lib/textbook/coreConceptBank";
+import { BANK_PARTS, PLUS_OF } from "@/lib/concept-blank/bank";
 import {
   recallDisplayRows,
   type RecallPhase,
@@ -273,17 +273,19 @@ describe("a key formula that touches the next formula", () => {
 
 describe("every bank row with touching formulas prints", () => {
   /** Rows of the automatic book's bank where one piece ends a formula and the next begins one. */
-  const seamed = conceptMemoryRows(TEXTBOOK_CORE_BANK.concepts).filter(
-    (row) => {
-      const pieces = splitBlankSentence(row.rawText);
-      return pieces.some(
-        (piece, at) =>
-          at > 0 &&
-          pieces[at - 1].text.endsWith("$") &&
-          piece.text.startsWith("$"),
-      );
-    },
-  );
+  const seamed = conceptMemoryRows(
+    Object.entries(BANK_PARTS)
+      .filter(([part]) => !PLUS_OF[part])
+      .flatMap(([, bank]) => bank.concepts),
+  ).filter((row) => {
+    const pieces = splitBlankSentence(row.rawText);
+    return pieces.some(
+      (piece, at) =>
+        at > 0 &&
+        pieces[at - 1].text.endsWith("$") &&
+        piece.text.startsWith("$"),
+    );
+  });
 
   it("finds the rows the scan reported", () => {
     const keys = seamed.map((row) => row.rowKey);
