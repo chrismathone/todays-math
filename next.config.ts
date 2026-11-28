@@ -41,8 +41,12 @@ const nextConfig: NextConfig = {
   // src/__tests__ and scripts): the full project needed 6.5 GB and the Vercel
   // builds stalled or died in «Running TypeScript» (2026-10-19). The pre-push
   // hook still type-checks everything with tsconfig.json.
+  // `scripts/deploy/build-next.mjs` runs that same check in its own process
+  // first and sets NEXT_BUILD_TYPECHECKED=1 only after it passed: inside
+  // next build the checker sat next to Turbopack and the 8 GB Vercel builds
+  // OOM'd (2026-11-28). A plain `next build` still checks.
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: process.env.NEXT_BUILD_TYPECHECKED === "1",
     tsconfigPath: "tsconfig.build.json",
   },
   // Keep existing image URLs and same-origin PDF/canvas requests. Local public
@@ -201,6 +205,10 @@ const nextConfig: NextConfig = {
     //    잃는 것: 운영 서버 오류 스택이 압축된 코드 기준이다(`src/lib/errorLog` 는 소스맵을 안 쓴다).
     //    다시 켜기 전에 데이터를 코드 밖으로 빼는 근본 해결(빌드 메모리 계획 P1)을 먼저 한다.
     turbopackSourceMaps: false,
+    // 빌드 영구 캐시도 쓰지 않는다 (2026-11-28) — Vercel 이 받아 온 2.3GB 캐시로 시작한 빌드는
+    // 컴파일에서 12 ~ 20분을 끌다 OOM, 캐시 없이 시작한 빌드는 컴파일 114s 에 통과한 뒤
+    // «Finished writing to filesystem cache» 와 타입 검사가 겹친 자리에서 OOM 이었다.
+    turbopackFileSystemCacheForBuild: false,
     // 배럴(barrel) 재수출 패키지를 실제 참조하는 하위 모듈로 바꿔 준다.
     //
     // ⚠️ **실측하니 이 저장소에서는 효과가 0 이다** (2026-08-17, Next 16 + Turbopack).

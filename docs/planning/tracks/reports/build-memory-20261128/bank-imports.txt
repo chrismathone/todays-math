@@ -1,0 +1,203 @@
+scripts/ontology/census/collect.ts:329:    BANK_PARTS: Record<string, Record<string, Raw[]>>;
+scripts/ontology/census/collect.ts:332:  for (const [part, bank] of Object.entries(bankModule.BANK_PARTS)) {
+src/lib/textbook/coreConceptBank.ts:2:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/lib/textbook/coreConceptBank.ts:3:import { bank as e4 } from "@/lib/concept-blank/bank/e4";
+src/lib/textbook/coreConceptBank.ts:4:import { bank as e5 } from "@/lib/concept-blank/bank/e5";
+src/lib/textbook/coreConceptBank.ts:5:import { bank as e6 } from "@/lib/concept-blank/bank/e6";
+src/lib/textbook/coreConceptBank.ts:6:import { bank as m1 } from "@/lib/concept-blank/bank/m1";
+src/lib/textbook/coreConceptBank.ts:7:import { bank as m2 } from "@/lib/concept-blank/bank/m2";
+src/lib/textbook/coreConceptBank.ts:8:import { bank as m3 } from "@/lib/concept-blank/bank/m3";
+src/lib/textbook/scripts/materialize.ts:26:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/lib/textbook/scripts/materialize.ts:27:import { bank as e4 } from "@/lib/concept-blank/bank/e4";
+src/lib/textbook/scripts/materialize.ts:28:import { bank as e5 } from "@/lib/concept-blank/bank/e5";
+src/lib/textbook/scripts/materialize.ts:29:import { bank as e6 } from "@/lib/concept-blank/bank/e6";
+src/lib/textbook/scripts/materialize.ts:30:import { bank as m1 } from "@/lib/concept-blank/bank/m1";
+src/lib/textbook/scripts/materialize.ts:31:import { bank as m2 } from "@/lib/concept-blank/bank/m2";
+src/lib/textbook/scripts/materialize.ts:32:import { bank as m3 } from "@/lib/concept-blank/bank/m3";
+src/lib/textbook/scripts/sourceLedger.ts:16:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/lib/textbook/scripts/sourceLedger.ts:17:import { bank as e4 } from "@/lib/concept-blank/bank/e4";
+src/lib/textbook/scripts/sourceLedger.ts:18:import { bank as e5 } from "@/lib/concept-blank/bank/e5";
+src/lib/textbook/scripts/sourceLedger.ts:19:import { bank as e6 } from "@/lib/concept-blank/bank/e6";
+src/lib/textbook/scripts/sourceLedger.ts:20:import { bank as m1 } from "@/lib/concept-blank/bank/m1";
+src/lib/textbook/scripts/sourceLedger.ts:21:import { bank as m2 } from "@/lib/concept-blank/bank/m2";
+src/lib/textbook/scripts/sourceLedger.ts:22:import { bank as m3 } from "@/lib/concept-blank/bank/m3";
+src/app/(main)/concept-blank/print/page.tsx:98:  const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/lib/textbook/server/quickCreate/context.ts:18:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/api/conceptBlankPrintPage.test.ts:34:    typeof import("@/lib/concept-blank/bank")
+src/__tests__/lib/textbookConceptForms.test.ts:16:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/lib/math-ontology/sources/definitionEvidence.ts:2:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+scripts/qa/bank/concept-bank-audit.ts:11:  BANK_PARTS,
+scripts/qa/bank/concept-bank-audit.ts:13:} from "../../../src/lib/concept-blank/bank";
+scripts/qa/bank/concept-bank-audit.ts:41:const byPart = Object.entries(BANK_PARTS).map(([part, bank]) => {
+scripts/qa/fading-traps/lib.ts:5:import { CONCEPT_BLANK_BANK } from "../../../src/lib/concept-blank/bank";
+src/lib/textbook/concepts.ts:12:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/components/fadingNumberLine.test.tsx:6:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/lib/fading/catalog.ts:2:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/components/ConceptBlankPick.test.tsx:32:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+src/__tests__/api/privateAccounts.test.ts:54:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/api/fadingRoutes.test.ts:109:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+scripts/qa/fading-simulation/run.ts:32:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/lib/privateDocumentActions.ts:83:        import("@/lib/concept-blank/bank"),
+src/lib/concept-blank/compose.ts:10:import { sectionStock } from "./bank/stock";
+src/__tests__/components/ConceptBlankPickEdges.test.tsx:19:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+scripts/qa/fading-jev-bench/run.ts:18:import { CONCEPT_BLANK_BANK } from "../../../src/lib/concept-blank/bank";
+src/__tests__/components/ConceptBlankDocumentGeneration.test.tsx:20:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+src/__tests__/components/ConceptBlankFigureSvg.test.tsx:6:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/components/ConceptBlankFigureSvg.test.tsx:162:    for (const bank of Object.values(BANK_PARTS))
+scripts/qa/fading-grouping/rebalance.ts:20:import { BANK_PARTS, PLUS_OF } from "../../../src/lib/concept-blank/bank";
+scripts/qa/fading-grouping/rebalance.ts:51:  for (const [part, bank] of Object.entries(BANK_PARTS)) {
+scripts/qa/fading-grouping/rebalance.ts:52:    if (PLUS_OF[part]) continue;
+scripts/qa/fading-grouping/rebalance.ts:53:    const plus = Object.entries(PLUS_OF).find(([, base]) => base === part)?.[0];
+scripts/qa/fading-grouping/rebalance.ts:56:      ...(plus ? BANK_PARTS[plus]!.concepts : []),
+scripts/qa/fading-grouping/audit.ts:11:import { CONCEPT_BLANK_BANK } from "../../../src/lib/concept-blank/bank";
+scripts/qa/fading-grouping/sync.ts:14:import { BANK_PARTS, PLUS_OF } from "../../../src/lib/concept-blank/bank";
+scripts/qa/fading-grouping/sync.ts:87:  for (const [part, bank] of Object.entries(BANK_PARTS)) {
+scripts/qa/fading-grouping/sync.ts:88:    if (PLUS_OF[part]) continue;
+scripts/qa/fading-grouping/sync.ts:89:    const plus = Object.entries(PLUS_OF).find(([, base]) => base === part)?.[0];
+scripts/qa/fading-grouping/sync.ts:92:      ...(plus ? BANK_PARTS[plus]!.concepts : []),
+scripts/qa/concept-blank/ten-progress.ts:7:  BANK_PARTS,
+scripts/qa/concept-blank/ten-progress.ts:8:  PLUS_OF,
+scripts/qa/concept-blank/ten-progress.ts:10:} from "../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/ten-progress.ts:34:if (!part || !(part in PLUS_OF)) {
+scripts/qa/concept-blank/ten-progress.ts:35:  console.error(`--part 는 ${Object.keys(PLUS_OF).join(" · ")} 중 하나`);
+scripts/qa/concept-blank/ten-progress.ts:38:const basePart = PLUS_OF[part]!;
+scripts/qa/concept-blank/ten-progress.ts:39:const base = BANK_PARTS[basePart]!;
+scripts/qa/concept-blank/ten-progress.ts:40:const plus = BANK_PARTS[part]!;
+scripts/qa/concept-blank/review/changes.ts:8:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/review/keep.ts:9:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/review/worklist.ts:17:  BANK_PARTS,
+scripts/qa/concept-blank/review/worklist.ts:19:} from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/review/worklist.ts:40:for (const [name, bank] of Object.entries(BANK_PARTS))
+scripts/qa/concept-blank/review/seed.ts:8:import { BANK_PARTS } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/review/seed.ts:48:const e3Base: ConceptBlankBank = BANK_PARTS.e3!;
+scripts/qa/concept-blank/review/seed.ts:88:      const now = [...Object.values(BANK_PARTS)]
+scripts/qa/concept-blank/review/progress.ts:6:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-notation.ts:9:import { BANK_PARTS } from "../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-notation.ts:27:for (const [part, bank] of Object.entries(BANK_PARTS)) {
+scripts/qa/concept-blank/clarity/compile-remediation.ts:6:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+scripts/qa/concept-blank/clarity/compile-remediation.ts:41:  Object.entries(BANK_PARTS).flatMap(([part, bank]) =>
+src/lib/concept-blank/bank/index.ts:25:export const BANK_PARTS: Readonly<Record<string, ConceptBlankBank>> = {
+src/lib/concept-blank/bank/index.ts:43:export const PLUS_OF: Readonly<Record<string, string>> = {
+src/lib/concept-blank/bank/index.ts:54:  concepts: Object.values(BANK_PARTS).flatMap((b) => b.concepts),
+src/lib/concept-blank/bank/index.ts:55:  ox: Object.values(BANK_PARTS).flatMap((b) => b.ox),
+src/lib/concept-blank/bank/index.ts:56:  apply: Object.values(BANK_PARTS).flatMap((b) => b.apply),
+src/lib/concept-blank/bank/index.ts:57:  figures: Object.values(BANK_PARTS).flatMap((b) => b.figures),
+scripts/qa/concept-blank/clarity/inventory.ts:14:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+scripts/qa/concept-blank/clarity/inventory.ts:20:const records = Object.entries(BANK_PARTS).flatMap(([part, bank]) =>
+scripts/qa/concept-blank/clarity/verify-remediation.ts:15:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+scripts/qa/concept-blank/clarity/verify-remediation.ts:50:const rows = Object.entries(BANK_PARTS).flatMap(([part, bank]) =>
+scripts/qa/concept-blank/clarity/verify-remediation.ts:129:  Object.entries(BANK_PARTS).map(([part, bank]) => [
+scripts/qa/concept-blank/clarity/verify-remediation.ts:168:      currentBankHash: hash(BANK_PARTS),
+scripts/qa/concept-blank/havruta/keep.ts:16:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-leak.ts:11:import { BANK_PARTS } from "../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-leak.ts:71:  ? { ...BANK_PARTS, fixture: FIXTURE_BANK }
+scripts/qa/concept-blank/check-leak.ts:72:  : BANK_PARTS;
+scripts/qa/concept-blank/student-clear/source-plan.ts:3:import { withAssessments } from "@/lib/concept-blank/bank/assessment";
+scripts/qa/concept-blank/student-clear/compile.ts:6:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+scripts/qa/concept-blank/student-clear/compile.ts:71:  current: BANK_PARTS,
+scripts/qa/concept-blank/havruta/review.ts:16:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/student-clear/application.ts:6:import type { AssessmentTable } from "@/lib/concept-blank/bank/assessment";
+scripts/qa/concept-blank/sheet-code-lengths.ts:19:import { CONCEPT_BLANK_BANK } from "../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-cross.ts:8:import { BANK_PARTS } from "../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/check-cross.ts:19:for (const [part, bank] of Object.entries(BANK_PARTS))
+scripts/qa/concept-blank/check-cross.ts:27:for (const [part, bank] of Object.entries(BANK_PARTS))
+scripts/qa/concept-blank/havruta/worklist.ts:14:  BANK_PARTS,
+scripts/qa/concept-blank/havruta/worklist.ts:16:} from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/havruta/worklist.ts:36:for (const [name, bank] of Object.entries(BANK_PARTS))
+scripts/qa/concept-blank/havruta/seed.ts:8:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+scripts/qa/concept-blank/havruta/progress.ts:6:import { CONCEPT_BLANK_BANK } from "../../../../src/lib/concept-blank/bank";
+src/app/dev/concept-blank-scan-wire/samples.ts:9:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+src/__tests__/unit/fadingFigures.test.ts:4:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/app/api/concept-blank/scan/issued/route.ts:38:      import("@/lib/concept-blank/bank"),
+src/__tests__/unit/conceptBlankGivenCase.test.ts:12:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptBlankGivenCase.test.ts:17:} from "@/lib/concept-blank/bank/plus";
+src/__tests__/unit/conceptBlankBankLoad.test.ts:11:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptBlankBankLoad.test.ts:12:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+src/__tests__/unit/fadingGroups.test.ts:23:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/__tests__/unit/conceptBlankReviewLedger.test.ts:7:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/textbookStudentReview.test.ts:5:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/fadingCards.test.ts:506:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/components/concept-blank/ConceptBlankView.tsx:55:import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+src/components/concept-blank/ConceptBlankView.tsx:56:import { joinBanks } from "@/lib/concept-blank/bank/plus";
+src/__tests__/unit/conceptBlankFractionDivisionWording.test.ts:7:import { bank as base } from "@/lib/concept-blank/bank/e6";
+src/__tests__/unit/conceptBlankFractionDivisionWording.test.ts:8:import { bank as plus } from "@/lib/concept-blank/bank/e6-plus";
+src/components/fading/teacher/previewData.ts:1:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/components/fading/devSamples.ts:4:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptBlankBank.test.ts:13:  BANK_PARTS,
+src/__tests__/unit/conceptBlankBank.test.ts:15:  PLUS_OF,
+src/__tests__/unit/conceptBlankBank.test.ts:17:} from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptBlankBank.test.ts:46:const BASE_PARTS = Object.keys(BANK_PARTS).filter((p) => !(p in PLUS_OF));
+src/__tests__/unit/conceptBlankBank.test.ts:47:const PLUS_PARTS = Object.keys(PLUS_OF);
+src/__tests__/unit/conceptBlankBank.test.ts:63:  it.each(Object.keys(BANK_PARTS))("%s matches the contract", (part) => {
+src/__tests__/unit/conceptBlankBank.test.ts:64:    const parsed = conceptBlankBankSchema.safeParse(BANK_PARTS[part]);
+src/__tests__/unit/conceptBlankBank.test.ts:71:  it.each(Object.keys(BANK_PARTS))(
+src/__tests__/unit/conceptBlankBank.test.ts:74:      for (const item of everyItem(BANK_PARTS[part])) {
+src/__tests__/unit/conceptBlankBank.test.ts:92:      const bank = BANK_PARTS[part]!;
+src/__tests__/unit/conceptBlankBank.test.ts:118:      const plus = BANK_PARTS[part]!;
+src/__tests__/unit/conceptBlankBank.test.ts:120:      const base = BANK_PARTS[PLUS_OF[part]!]!;
+src/__tests__/unit/conceptBlankBank.test.ts:150:      const plus = BANK_PARTS[part]!;
+src/__tests__/unit/conceptBlankBank.test.ts:154:      for (const item of everyItem(BANK_PARTS[PLUS_OF[part]!]))
+src/__tests__/unit/conceptBlankBank.test.ts:229:  it.each(Object.keys(BANK_PARTS))(
+src/__tests__/unit/conceptBlankBank.test.ts:232:      const faults = bankNotationFaults(BANK_PARTS[part]!).map(
+src/__tests__/unit/conceptBlankSheetCode.test.ts:18:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/textbookStudentProjection.test.ts:3:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/fadingContentGuard.test.ts:725:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/__tests__/unit/conceptBlankSectionTitle.test.ts:9:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/textbookBankActivityScaffolds.integration.test.ts:17:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/__tests__/unit/textbookBankActivityScaffolds.integration.test.ts:18:import { bank as m2 } from "@/lib/concept-blank/bank/m2";
+src/__tests__/unit/conceptDefinitionSource.test.ts:4:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptDefinitionSource.test.ts:12:    for (const [part, bank] of Object.entries(BANK_PARTS)) {
+src/__tests__/unit/fadingTyped.test.ts:342:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/__tests__/unit/textbookSemanticCompatibility.test.ts:22:import { bank as e3Bank } from "@/lib/concept-blank/bank/e3";
+src/__tests__/unit/conceptBlankScan.test.ts:25:import { bank as currentE5 } from "@/lib/concept-blank/bank/e5";
+src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts:8:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts:9:import { plusSection, joinBanks, RETIRED } from "@/lib/concept-blank/bank/plus";
+src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts:10:import { withAssessments } from "@/lib/concept-blank/bank/assessment";
+src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts:385:    const expectedBank = structuredClone(BANK_PARTS.m2plus!);
+src/__tests__/unit/textbookTeacherBlank.test.ts:40:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/fadingErasure.test.ts:232:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/__tests__/unit/textbookRecoveryConceptIdentity.test.ts:5:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/__tests__/unit/textbookConceptScripts.test.ts:14:import { bank as e3 } from "@/lib/concept-blank/bank/e3";
+src/__tests__/unit/textbookConceptScripts.test.ts:15:import { bank as e4 } from "@/lib/concept-blank/bank/e4";
+src/__tests__/unit/textbookConceptScripts.test.ts:16:import { bank as e5 } from "@/lib/concept-blank/bank/e5";
+src/__tests__/unit/textbookConceptScripts.test.ts:17:import { bank as e6 } from "@/lib/concept-blank/bank/e6";
+src/__tests__/unit/textbookConceptScripts.test.ts:18:import { bank as m1 } from "@/lib/concept-blank/bank/m1";
+src/__tests__/unit/textbookConceptScripts.test.ts:19:import { bank as m2 } from "@/lib/concept-blank/bank/m2";
+src/__tests__/unit/textbookConceptScripts.test.ts:20:import { bank as m3 } from "@/lib/concept-blank/bank/m3";
+src/__tests__/unit/fadingSession.test.ts:301:    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+src/__tests__/unit/fadingTraps.test.ts:4:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptBlankHavrutaLedger.test.ts:7:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptStudentClearBankSource.test.ts:5:import { withAssessments } from "@/lib/concept-blank/bank/assessment";
+src/__tests__/unit/conceptStudentClearBankSource.test.ts:6:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/unit/conceptStudentClearBankSource.test.ts:31:    const output = { exports: {} as { bank: (typeof BANK_PARTS)[string] } };
+src/__tests__/unit/conceptStudentClearBankSource.test.ts:51:    for (const part of Object.keys(BANK_PARTS)) {
+src/__tests__/unit/conceptBlankClarityIntegration.test.ts:4:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/mathOntologySourceDatabase.test.ts:344:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/unit/mathOntologySourceDatabase.test.ts:358:  const release = loadBundledMathOntologySourcePartitions(sourceRuntimeFixture.pins), nativeId = BANK_PARTS.e5.concepts[0].id;
+src/__tests__/unit/mathOntologySourceDatabase.test.ts:374:  const current = BANK_PARTS.e5.concepts[0],
+src/__tests__/unit/textbookConcepts.test.ts:4:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/fadingNumberLineFigures.test.ts:2:import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+src/__tests__/unit/textbookBankActivityScaffolds.test.ts:11:import { BANK_PARTS } from "@/lib/concept-blank/bank";
+src/__tests__/unit/textbookBankActivityScaffolds.test.ts:40:const core = Object.entries(BANK_PARTS)
+src/__tests__/unit/conceptStudentClearSourcePlan.test.ts:3:import { withAssessments } from "@/lib/concept-blank/bank/assessment";
+src/lib/concept-blank/bank/index.ts:3:import { bank as e3 } from "./e3";
+src/lib/concept-blank/bank/index.ts:4:import { bank as e4 } from "./e4";
+src/lib/concept-blank/bank/index.ts:5:import { bank as e5 } from "./e5";
+src/lib/concept-blank/bank/index.ts:6:import { bank as e6 } from "./e6";
+src/lib/concept-blank/bank/index.ts:7:import { bank as m1 } from "./m1";
+src/lib/concept-blank/bank/index.ts:8:import { bank as m2 } from "./m2";
+src/lib/concept-blank/bank/index.ts:9:import { bank as m3 } from "./m3";
+src/lib/concept-blank/bank/index.ts:10:import { bank as e3plus } from "./e3-plus";
+src/lib/concept-blank/bank/index.ts:11:import { bank as e4plus } from "./e4-plus";
+src/lib/concept-blank/bank/index.ts:12:import { bank as e5plus } from "./e5-plus";
+src/lib/concept-blank/bank/index.ts:13:import { bank as e6plus } from "./e6-plus";
+src/lib/concept-blank/bank/index.ts:14:import { bank as m1plus } from "./m1-plus";
+src/lib/concept-blank/bank/index.ts:15:import { bank as m2plus } from "./m2-plus";
+src/lib/concept-blank/bank/index.ts:16:import { bank as m3plus } from "./m3-plus";
+src/lib/concept-blank/bank/load.ts:14:  초3: () => Promise.all([import("./e3"), import("./e3-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:15:  초4: () => Promise.all([import("./e4"), import("./e4-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:16:  초5: () => Promise.all([import("./e5"), import("./e5-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:17:  초6: () => Promise.all([import("./e6"), import("./e6-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:18:  중1: () => Promise.all([import("./m1"), import("./m1-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:19:  중2: () => Promise.all([import("./m2"), import("./m2-plus")]).then(banks),
+src/lib/concept-blank/bank/load.ts:20:  중3: () => Promise.all([import("./m3"), import("./m3-plus")]).then(banks),

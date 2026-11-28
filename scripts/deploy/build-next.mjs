@@ -1,14 +1,18 @@
 import { spawnSync } from "node:child_process";
-import path from "node:path";
+import { planBuild } from "./build-next-plan.mjs";
 
-// Match the existing type-check budget. Next forwards NODE_OPTIONS to its
-// TypeScript worker; a parent-only CLI flag can be overridden by inherited options.
-// Keep other options, and scope this budget to the build process and its workers.
-const nodeOptions = `${process.env.NODE_OPTIONS ?? ""} --max-old-space-size=8192`.trim();
-const result = spawnSync(
-  process.execPath,
-  [path.resolve("node_modules/next/dist/bin/next"), "build", ...process.argv.slice(2)],
-  { stdio: "inherit", env: { ...process.env, NODE_OPTIONS: nodeOptions } },
-);
-if (result.error) throw result.error;
-process.exitCode = result.status ?? 1;
+// tsc first, then next build — each in its own process, so the type checker and
+// Turbopack are never in memory together (see build-next-plan.mjs).
+for (const step of planBuild({
+  env: process.env,
+  argv: process.argv.slice(2),
+  execPath: process.execPath,
+  cwd: process.cwd(),
+})) {
+  const result = spawnSync(step.command, step.args, { stdio: "inherit", env: step.env });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    process.exitCode = result.status ?? 1;
+    break;
+  }
+}

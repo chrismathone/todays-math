@@ -1,0 +1,133 @@
+src/app/dev/print-specimen/page.tsx:131:  // 보여야 한다. 다만 `ENABLE_RENDER_QA` 를 켜면 `/dev` 12화면이 인증 없이 통째로
+src/app/dev/print-specimen/page.tsx:134:  if (!(await devPageVisible({ directorOnly: true }))) {
+src/app/dev/katex/page.tsx:54:    process.env.NODE_ENV === "production" &&
+src/app/dev/figure-group-align/page.tsx:19:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/studio-demo/page.tsx:16:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/review-hifi/page.tsx:86:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/pack-by-height/page.tsx:93:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-output-hifi/page.tsx:21:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/eywa-daily-hifi/page.tsx:23:    process.env.NODE_ENV === "production" &&
+src/app/dev/eywa-daily-hifi/page.tsx:24:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-hifi/page.tsx:116:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/choice-layout/page.tsx:23:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/fading-quota-hifi/page.tsx:19:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/ui-wire/page.tsx:35:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/concept-hifi/page.tsx:28:    process.env.NODE_ENV === "production" &&
+src/app/dev/concept-hifi/page.tsx:29:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/fading-teacher-hifi/page.tsx:22:    process.env.NODE_ENV === "production" &&
+src/app/dev/fading-teacher-hifi/page.tsx:23:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-publish-wire/page.tsx:16:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/grading-hifi/page.tsx:36:    process.env.NODE_ENV === "production" &&
+src/app/dev/grading-hifi/page.tsx:37:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/elem-numberline-wire/page.tsx:18:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/bank-source-hifi/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/bank-source-hifi/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/mobile-explorers-qa/page.tsx:10:    process.env.NODE_ENV === "production" &&
+src/app/dev/mobile-explorers-qa/page.tsx:11:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/review-wire/page.tsx:45:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/retry-wire/page.tsx:41:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/choice-marks/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/choice-marks/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-report-screen-hifi/page.tsx:9:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/fading/page.tsx:18:    process.env.NODE_ENV === "production" &&
+src/app/dev/fading/page.tsx:19:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/skeletons/page.tsx:215:    process.env.NODE_ENV === "production" &&
+src/app/dev/skeletons/page.tsx:216:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-builder-hifi/page.tsx:20:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/learn-hifi/page.tsx:29:    process.env.NODE_ENV === "production" &&
+src/app/dev/learn-hifi/page.tsx:30:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/concept-blank-scan-wire/page.tsx:12:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/tier-bench/g3/page.tsx:84:    process.env.NODE_ENV === "production" &&
+src/app/dev/tier-bench/g3/page.tsx:85:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/mid-engine/page.tsx:38:    process.env.NODE_ENV === "production" &&
+src/app/dev/mid-engine/page.tsx:39:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-report-wire/page.tsx:17:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/print-paper/page.tsx:49:  // 보여야 한다. 다만 `ENABLE_RENDER_QA` 를 켜면 `/dev` 12화면이 인증 없이 통째로
+src/app/dev/print-paper/page.tsx:52:  if (!(await devPageVisible({ directorOnly: true }))) {
+src/app/dev/exam-conditions-hifi/page.tsx:16:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/report-wire/page.tsx:114:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/question-formats/page.tsx:12:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/tier-bench/g6/page.tsx:75:    process.env.NODE_ENV === "production" &&
+src/app/dev/tier-bench/g6/page.tsx:76:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-wire/page.tsx:100:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-publish-hifi/page.tsx:14:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/tier-bench/g5/page.tsx:116:    process.env.NODE_ENV === "production" &&
+src/app/dev/tier-bench/g5/page.tsx:117:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-builder-output/page.tsx:12:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/tier-bench/m2/page.tsx:86:    process.env.NODE_ENV === "production" &&
+src/app/dev/tier-bench/m2/page.tsx:87:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/bank-detail-wire/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/bank-detail-wire/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/range-hifi/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/range-hifi/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/fading-teacher-wire/page.tsx:19:    process.env.NODE_ENV === "production" &&
+src/app/dev/fading-teacher-wire/page.tsx:20:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-print/page.tsx:42:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/render-a-preview/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/render-a-preview/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-builder-simple-wire/page.tsx:11:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/tier-bench/g4/page.tsx:70:    process.env.NODE_ENV === "production" &&
+src/app/dev/tier-bench/g4/page.tsx:71:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-conditions-wire/page.tsx:17:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/unified/page.tsx:20:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/bank-detail-hifi/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/bank-detail-hifi/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-builder-steps-hifi/page.tsx:14:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/figure-print-size/page.tsx:188:    process.env.NODE_ENV === "production" &&
+src/app/dev/figure-print-size/page.tsx:189:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/concept-blank-scan-hifi/page.tsx:10:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-report-hifi/page.tsx:10:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/elem-numberline-hifi/page.tsx:183:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/arithmetic-sweep/page.tsx:12:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/descriptive-paper-wire/page.tsx:12:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/card-states/page.tsx:35:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-builder-steps-wire/page.tsx:14:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/library-filters-hifi/page.tsx:18:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-report-styles/page.tsx:8:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/content-damaged/page.tsx:97:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/cube-scrape/page.tsx:17:    process.env.NODE_ENV === "production" &&
+src/app/dev/cube-scrape/page.tsx:18:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/exam-builder-simple-hifi/page.tsx:11:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/mobile-elementary-review-qa/page.tsx:10:    process.env.NODE_ENV === "production" &&
+src/app/dev/mobile-elementary-review-qa/page.tsx:11:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/print-color-hifi/page.tsx:6:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/workspace-alignment/page.tsx:13:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/report-exam-wire/page.tsx:17:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/class-owner-hifi/page.tsx:23:    process.env.NODE_ENV === "production" &&
+src/app/dev/class-owner-hifi/page.tsx:24:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/elem-engine/page.tsx:26:    process.env.NODE_ENV === "production" &&
+src/app/dev/elem-engine/page.tsx:27:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/fading-quota-wire/page.tsx:20:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/exam-report-screen-wire/page.tsx:17:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/library-filters-wire/page.tsx:18:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/plan-screen-hifi/page.tsx:34:    process.env.NODE_ENV === "production" &&
+src/app/dev/plan-screen-hifi/page.tsx:35:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/explorer-srs/page.tsx:14:    process.env.NODE_ENV === "production" &&
+src/app/dev/explorer-srs/page.tsx:15:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/descriptive-paper-hifi/page.tsx:8:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/bank-source-wire/page.tsx:16:    process.env.NODE_ENV === "production" &&
+src/app/dev/bank-source-wire/page.tsx:17:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/print-check/page.tsx:26: * 구워져, 나중에 `ENABLE_RENDER_QA` 를 꺼도 이미 구워진 쪽이 나간다. 적대적 리뷰가
+src/app/dev/print-check/page.tsx:38:  // 보여야 한다. 다만 `ENABLE_RENDER_QA` 를 켜면 `/dev` 12화면이 인증 없이 통째로
+src/app/dev/print-check/page.tsx:41:  if (!(await devPageVisible({ directorOnly: true }))) {
+src/app/dev/mobile-middle-review-qa/page.tsx:10:    process.env.NODE_ENV === "production" &&
+src/app/dev/mobile-middle-review-qa/page.tsx:11:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/blender/page.tsx:19:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/blender/stack-cubes/page.tsx:39:  if (process.env.NODE_ENV === "production") notFound();
+src/app/dev/daily-journey-qa/page.tsx:21:    process.env.NODE_ENV === "production" &&
+src/app/dev/daily-journey-qa/page.tsx:22:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/commercial-workbooks/page.tsx:13:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/exam-output-wire/page.tsx:22:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/eywa-daily-wire/page.tsx:25:    process.env.NODE_ENV === "production" &&
+src/app/dev/eywa-daily-wire/page.tsx:26:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/mobile-practice-qa/page.tsx:14:    process.env.NODE_ENV === "production" &&
+src/app/dev/mobile-practice-qa/page.tsx:15:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/figure-fit/page.tsx:19:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/basket-hifi/page.tsx:27:    process.env.NODE_ENV === "production" &&
+src/app/dev/basket-hifi/page.tsx:28:    process.env.ENABLE_RENDER_QA !== "1"
+src/app/dev/figure-glyph-size/page.tsx:90:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/figure-zorder/page.tsx:19:  if (process.env.NODE_ENV !== "development") notFound();
+src/app/dev/exam-builder-wire/page.tsx:23:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+src/app/dev/transfer-qa/page.tsx:101:    process.env.NODE_ENV === "production" &&
+src/app/dev/report-hifi/page.tsx:35: * ⚠️ 원장 전용(`devPageVisible({ directorOnly: true })`) — `/dev/report-wire` 와 같은 규약.
+src/app/dev/report-hifi/page.tsx:107:  if (!(await devPageVisible({ directorOnly: true }))) notFound();
